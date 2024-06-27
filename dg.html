@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+</head>
+<body>
+     <script>
+        var bgr = document.createElement('div');
+        bgr.classList.add("bgr");
+        bgr.style.width = "100%";
+        bgr.style.minHeight = "100vh";
+        bgr.style.background = "linear-gradient(45deg,black,blue)";
+        bgr.style.color = "white";
+
+
+        var container = document.createElement('div');
+        container.classList.add("container");
+        container.style.width = "800px";
+        container.style.height = "180px";
+        container.style.position = "absolute";
+        container.style.top = "50%";
+        container.style.left = "50%";
+        container.style.transform = "translate(-50%,-50%)";
+
+
+
+        var clock = document.createElement("div");
+        clock.classList.add("clock");
+        clock.style.width = "100%";
+        clock.style.height = "100%";
+        clock.style.background = "rgba(235,0,255,0.11)";
+        clock.style.borderRadius = "10px";
+        clock.style.display = "flex";
+        clock.style.alignItems = "center";
+        clock.style.justifyContent = "center";
+        clock.style.backdropFilter = "blur(40px)";
+
+
+        var span = document.createElement("span");
+        span.setAttribute("id","hrs");
+        span.innerText = "00";
+        
+        var span4 = document.createElement("span");
+        span4.innerHTML = ":"
+
+        var span2 = document.createElement("span");
+        span2.setAttribute("id","mins");
+        span2.innerText = "00";
+
+        var span5 = document.createElement("span");
+        span5.innerHTML = ":"
+
+
+        var span3 = document.createElement("span");
+        span3.setAttribute("id","secs");
+        span3.innerText = "00";
+
+
+
+
+
+
+
+        
+        clock.appendChild(span);
+        clock.appendChild(span4);
+        clock.appendChild(span2);
+        clock.appendChild(span5);
+        clock.appendChild(span3);
+        
+        container.appendChild(clock);
+        
+        bgr.appendChild(container);
+
+        document.body.appendChild(bgr);
+
+        console.log(bgr);
+     </script>
+</body>
+</html>
