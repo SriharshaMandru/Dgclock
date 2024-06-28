@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
-     <script>
+    <script>
         var bgr = document.createElement('div');
         bgr.classList.add("bgr");
         bgr.style.width = "100%";
         bgr.style.minHeight = "100vh";
-        bgr.style.background = "linear-gradient(45deg,black,blue)";
+        bgr.style.background = "linear-gradient(45deg, black, blue)";
         bgr.style.color = "white";
-
+        document.body.appendChild(bgr);
 
         var container = document.createElement('div');
         container.classList.add("container");
@@ -23,8 +31,31 @@
         container.style.top = "50%";
         container.style.left = "50%";
         container.style.transform = "translate(-50%,-50%)";
+        bgr.appendChild(container);
 
+        var containerAfter = document.createElement('div');
+        containerAfter.style.content = '""';
+        containerAfter.style.width = "180px";
+        containerAfter.style.height = "180px";
+        containerAfter.style.background = "pink";
+        containerAfter.style.borderRadius = "50%";
+        containerAfter.style.position = "absolute";
+        containerAfter.style.right = "-30px";
+        containerAfter.style.bottom = "-50px";
+        containerAfter.style.zIndex = "-1";
+        container.appendChild(containerAfter);
 
+        var containerBefore = document.createElement("div");
+        containerBefore.style.content = '""';
+        containerBefore.style.width = "180px";
+        containerBefore.style.height = "180px";
+        containerBefore.style.background = "blue";
+        containerBefore.style.borderRadius = "5px";
+        containerBefore.style.position = "absolute";
+        containerBefore.style.left = "-50px";
+        containerBefore.style.top = "-50px";
+        containerBefore.style.zIndex = "-1";
+        container.appendChild(containerBefore);
 
         var clock = document.createElement("div");
         clock.classList.add("clock");
@@ -36,47 +67,91 @@
         clock.style.alignItems = "center";
         clock.style.justifyContent = "center";
         clock.style.backdropFilter = "blur(40px)";
-
+        container.appendChild(clock);
 
         var span = document.createElement("span");
-        span.setAttribute("id","hrs");
+        span.setAttribute("id", "hrs");
         span.innerText = "00";
-        
+        span.style.fontSize = "80px";
+        span.style.width = "110px";
+        span.style.display = "inline-block";
+        span.style.textAlign = "center";
+        span.style.position = "relative";
+        clock.appendChild(span);
+
+        var labelHours = document.createElement("div");
+        labelHours.innerText = "Hours";
+        labelHours.style.fontSize = "24px";
+        labelHours.style.textAlign = "center";
+        labelHours.style.position = "absolute";
+        labelHours.style.bottom = "-30px";
+        labelHours.style.left = "-18%";
+        labelHours.style.width = "100%";
+        clock.appendChild(labelHours);
+
+
         var span4 = document.createElement("span");
-        span4.innerHTML = ":"
+        span4.innerHTML = ":";
+        span4.style.fontSize = "80px";
+        clock.appendChild(span4);
 
         var span2 = document.createElement("span");
-        span2.setAttribute("id","mins");
+        span2.setAttribute("id", "mins");
         span2.innerText = "00";
+        span2.style.fontSize = "80px";
+        span2.style.width = "110px";
+        span2.style.display = "inline-block";
+        span2.style.textAlign = "center";
+        span2.style.position = "relative";
+        clock.appendChild(span2);
+
+        var labelMinutes = document.createElement("div");
+        labelMinutes.innerText = "Minutes";
+        labelMinutes.style.fontSize = "24px";
+        labelMinutes.style.textAlign = "center";
+        labelMinutes.style.position = "absolute";
+        labelMinutes.style.bottom = "-30px";
+        labelMinutes.style.left = "-1%";
+        labelMinutes.style.width = "100%";
+        clock.appendChild(labelMinutes);
 
         var span5 = document.createElement("span");
-        span5.innerHTML = ":"
-
+        span5.innerHTML = ":";
+        span5.style.fontSize = "80px";
+        clock.appendChild(span5);
 
         var span3 = document.createElement("span");
-        span3.setAttribute("id","secs");
+        span3.setAttribute("id", "secs");
         span3.innerText = "00";
-
-
-
-
-
-
-
-        
-        clock.appendChild(span);
-        clock.appendChild(span4);
-        clock.appendChild(span2);
-        clock.appendChild(span5);
+        span3.style.fontSize = "80px";
+        span3.style.width = "110px";
+        span3.style.display = "inline-block";
+        span3.style.textAlign = "center";
+        span3.style.position = "relative";
         clock.appendChild(span3);
-        
-        container.appendChild(clock);
-        
-        bgr.appendChild(container);
 
-        document.body.appendChild(bgr);
+        var labelSeconds = document.createElement("div");
+        labelSeconds.innerText = "Seconds";
+        labelSeconds.style.fontSize = "24px";
+        labelSeconds.style.textAlign = "center";
+        labelSeconds.style.position = "absolute";
+        labelSeconds.style.bottom = "-30px";
+        labelSeconds.style.right = "-17%";
+        labelSeconds.style.width = "100%";
+        clock.appendChild(labelSeconds);
 
-        console.log(bgr);
-     </script>
+
+        let hrs = document.getElementById("hrs");
+        let mins = document.getElementById("mins");
+        let secs = document.getElementById("secs");
+
+        setInterval(() =>{
+            let currentTime = new Date();
+            hrs.innerHTML = (currentTime.getHours()< 10 ? "0":"") + currentTime.getHours();
+            mins.innerHTML = (currentTime.getMinutes()< 10 ? "0":"") + currentTime.getMinutes();
+            secs.innerHTML = (currentTime.getSeconds()< 10 ? "0":"") + currentTime.getSeconds();
+        },1000);
+
+    </script>
 </body>
 </html>
